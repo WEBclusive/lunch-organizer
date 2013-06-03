@@ -4,7 +4,7 @@
         <th>User</th>
         <th>Total</th>
         {% for date in renderDates  %}
-            <th class="date"><small>{{ date.format('D') }}<br>{{ date.format('d/m') }}</small></th>
+            <th class="date {{ (date.format('N') > 5)? 'weekend':'weekday' }}">{{ date.format('D') }}<br>{{ date.format('d/m') }}</th>
         {% endfor %}
     </tr>
     </thead>
@@ -16,7 +16,7 @@
             {% for date in renderDates %}
                 {% set state = user.getStateByDate(date) %}
                 <td
-                   class="state-toggle state-{{ state }}"
+                   class="state-toggle state-{{ state }} {{ (date.format('N') > 5)? 'weekend':'weekday' }}"
                    data-user="{{ user.id }}"
                    data-state="{{ state }}"
                    data-date="{{ date.format('Ymd') }}"

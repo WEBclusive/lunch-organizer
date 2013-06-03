@@ -10,3 +10,11 @@
 .state-towel {
   background-color: #550000;
 }
+.weekend {
+  background-color: #999999;
+}
+th.weekend,
+th.weekday {
+  text-align: center;
+  font-size: 75%;
+}

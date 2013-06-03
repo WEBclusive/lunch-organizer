@@ -17,7 +17,7 @@ class OrganizerController extends Controller
 
         $users = $this->getDoctrine()->getRepository('WebclusiveLunchBundle:User')->findAll();
 
-        $renderDates = new \DatePeriod(new \DateTime('-2 days'), new \DateInterval('P1D'), 30);
+        $renderDates = new \DatePeriod(new \DateTime('-2 days'), new \DateInterval('P1D'), 60);
 
 
         return array(

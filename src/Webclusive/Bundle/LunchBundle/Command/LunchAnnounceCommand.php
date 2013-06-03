@@ -111,7 +111,9 @@ class LunchAnnounceCommand extends ContainerAwareCommand
         $dsRepo = $this->getContainer()->get('doctrine')->getRepository('WebclusiveLunchBundle:DateState');
 
         $date = new \DateTime('tomorrow');
-        if ($date->format('D') === 'Sat' || $date->format('D') === 'Sun') {
+
+        // Skip Weekends
+        if ($date->format('N') > 5) {
             $date->modify('next monday');
         }
 
