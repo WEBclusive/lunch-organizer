@@ -1,0 +1,5 @@
+webclusive_lunch:
+    resource: "@WebclusiveLunchBundle/Controller/"
+    type:     annotation
+    prefix:   /
+

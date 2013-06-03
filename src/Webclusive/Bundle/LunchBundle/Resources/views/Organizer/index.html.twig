@@ -1,0 +1,87 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}WebclusiveLunchBundle:Organizer:index{% endblock %}
+
+{% block body %}
+    <div class="header">
+        <h1>Webclusive Lunch Schedule <small><a href="{{ path('user') }}">Manage Users</a></small></h1>
+    </div>
+
+    {% include 'WebclusiveLunchBundle:Organizer:_table.html.twig' with {renderDates: renderDates|slice(0, 15)} %}
+    {% include 'WebclusiveLunchBundle:Organizer:_table.html.twig' with {renderDates: renderDates|slice(15, 15)} %}
+
+    <h2>To Do:</h2>
+    <ul>
+        <li>Count totals per user</li>
+        <li>Exclude weekends from list</li>
+        <li>Add a lunch rating system?</li>
+    </ul>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+
+        $('.state-toggle').hover(function (e) {
+            currentTd = $(this);
+            var otherBtns = $('.state-toggle-btn');
+            var btn = $("#btnTemplate").html();
+
+            //Build button
+            btn = btn.replace(/%date%/g, $(this).data('date'));
+            btn = btn.replace(/%user%/g, $(this).data('user'));
+
+            // Clear other buttons
+            otherBtns.remove();
+
+            // Create button html
+            $(this).html(btn);
+
+            // Add triggers
+            $('.toggle-action').click(function (e) {
+
+                var postData = {
+                    date: $(this).data('date'),
+                    state: $(this).data('state'),
+                    user: $(this).data('user')
+                };
+
+                var post = $.post("/state/set", postData);
+
+                post.done(function(data) {
+
+                    // Set state of TD
+                    currentTd.removeClass('state-none state-lunch state-absnt state-towel');
+                    currentTd.addClass('state-' + postData.state);
+
+                    // Clear toggle
+                    $('.state-toggle-btn').remove();
+
+                });
+
+                post.fail(function(data) {
+                    alert('Error!');
+                });
+            });
+
+            // Trigger dropdown functionality
+            $('.dropdown-toggle').dropdown('toggle');
+        });
+
+    </script>
+
+    <script type="text/template" id="btnTemplate">
+        <div class="btn-group state-toggle-btn">
+            <a class="btn dropdown-toggle btn-mini" data-toggle="dropdown" href="#">
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="toggle-action" data-state='lunch' data-date="%date%" data-user="%user%">Set "Lunch"</a></li>
+                <li><a class="toggle-action" data-state='towel' data-date="%date%" data-user="%user%">Set "Towels"</a></li>
+                <li><a class="toggle-action" data-state='absnt' data-date="%date%" data-user="%user%">Set "Absent"</a></li>
+                <li><a class="toggle-action" data-state='none' data-date="%date%" data-user="%user%">Set "None"</a></li>
+            </ul>
+        </div>
+
+    </script>
+{% endblock %}

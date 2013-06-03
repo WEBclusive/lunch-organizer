@@ -1,0 +1,28 @@
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>User</th>
+        <th>Total</th>
+        {% for date in renderDates  %}
+            <th class="date">{{ date.format('D') }}<br>{{ date.format('d/m') }}</th>
+        {% endfor %}
+    </tr>
+    </thead>
+    <tbody>
+    {% for user in users %}
+        <tr>
+            <td>{{ user.name }}</td>
+            <td>{{ 'x' }}</td>
+            {% for date in renderDates %}
+                {% set state = user.getStateByDate(date) %}
+                <td
+                   class="state-toggle state-{{ state }}"
+                   data-user="{{ user.id }}"
+                   data-state="{{ state }}"
+                   data-date="{{ date.format('Ymd') }}"
+                ></td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
