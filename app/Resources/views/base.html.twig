@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}WEBclusive Lunch Organizer{% endblock %}</title>
         <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
         <link rel="stylesheet" href="{{ asset('css/site.css') }}">
         {% block stylesheets %}{% endblock %}
@@ -10,7 +10,20 @@
     </head>
     <body>
 
+
+
         <div class="container">
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <a class="brand" href="#">Lunch Organizer</a>
+                    <ul class="nav">
+                        <li><a href="{{ path('organizer') }}">Organizer</a></li>
+                        <li><a href="{{ path('user') }}">Users</a></li>
+                        <li><a href="https://github.com/WEBclusive/lunch-organizer">Bugs & Contributions</a></li>
+                    </ul>
+                </div>
+            </div>
+
             {% block body %}{% endblock %}
         </div>
 

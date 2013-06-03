@@ -1,10 +1,10 @@
-<table class="table table-bordered">
+<table class="table table-bordered table-condensed">
     <thead>
     <tr>
         <th>User</th>
         <th>Total</th>
         {% for date in renderDates  %}
-            <th class="date">{{ date.format('D') }}<br>{{ date.format('d/m') }}</th>
+            <th class="date"><small>{{ date.format('D') }}<br>{{ date.format('d/m') }}</small></th>
         {% endfor %}
     </tr>
     </thead>

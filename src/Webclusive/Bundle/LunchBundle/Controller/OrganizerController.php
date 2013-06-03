@@ -9,7 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class OrganizerController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/", name="organizer")
      * @Template()
      */
     public function indexAction()

@@ -11,7 +11,7 @@ use Webclusive\Bundle\LunchBundle\Entity\DateState;
 class StateController extends Controller
 {
     /**
-     * @Route("/state/set")
+     * @Route("/state/set", name="set-state")
      */
     public function setAction()
     {

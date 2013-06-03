@@ -3,9 +3,6 @@
 {% block title %}WebclusiveLunchBundle:Organizer:index{% endblock %}
 
 {% block body %}
-    <div class="header">
-        <h1>Webclusive Lunch Schedule <small><a href="{{ path('user') }}">Manage Users</a></small></h1>
-    </div>
 
     {% include 'WebclusiveLunchBundle:Organizer:_table.html.twig' with {renderDates: renderDates|slice(0, 15)} %}
     {% include 'WebclusiveLunchBundle:Organizer:_table.html.twig' with {renderDates: renderDates|slice(15, 15)} %}
