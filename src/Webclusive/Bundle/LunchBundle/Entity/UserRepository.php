@@ -17,7 +17,7 @@ class UserRepository extends EntityRepository
         $qb = $this->createQueryBuilder('u');
 
         $qb->addSelect('COUNT(ds.id) as totalCount');
-        $qb->leftJoin('u.dateStates', 'ds', Join::WITH, 'u.id = ds.user AND ds.state = :state AND ds.targetDate < :today');
+        $qb->leftJoin('u.dateStates', 'ds', Join::WITH, 'u.id = ds.user AND ds.state = :state AND ds.targetDate <= :today');
         $qb->groupBy('u.id');
 
 
