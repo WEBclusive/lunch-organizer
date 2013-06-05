@@ -3,7 +3,7 @@
 namespace Webclusive\Bundle\LunchBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
-
+use Doctrine\ORM\Query\Expr\Join;
 /**
  * UserRepository
  *
@@ -12,4 +12,18 @@ use Doctrine\ORM\EntityRepository;
  */
 class UserRepository extends EntityRepository
 {
+    public function getAllWithCurrentLunchCount()
+    {
+        $qb = $this->createQueryBuilder('u');
+
+        $qb->addSelect('COUNT(ds.id) as totalCount');
+        $qb->leftJoin('u.dateStates', 'ds', Join::WITH, 'u.id = ds.user AND ds.state = :state AND ds.targetDate < :today');
+        $qb->groupBy('u.id');
+
+
+        $qb->setParameter(':state', DateState::STATE_LUNCH);
+        $qb->setParameter(':today', new \DateTime('today'));
+
+        return $qb->getQuery()->getResult();
+    }
 }
