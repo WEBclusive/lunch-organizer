@@ -12,4 +12,18 @@ use Doctrine\ORM\EntityRepository;
  */
 class DateStateRepository extends EntityRepository
 {
+
+    public function countLunchesByUser($user)
+    {
+        $qb = $this->createQueryBuilder('ds');
+
+        $qb->select('count(ds.id)');
+        $qb->andWhere('user = :user');
+        $qb->andWhere('state = :state');
+
+        $qb->setParameter(':user', $user);
+        $qb->setParameter(':state', DateState::STATE_LUNCH);
+
+        return $qb->getQuery()->getSingleScalarResult();
+    }
 }

@@ -12,7 +12,7 @@
     {% for user in users %}
         <tr>
             <td>{{ user.name }}</td>
-            <td>{{ 'x' }}</td>
+            <td>{{ attribute(counts, user.id) }}</td>
             {% for date in renderDates %}
                 {% set state = user.getStateByDate(date) %}
                 <td
