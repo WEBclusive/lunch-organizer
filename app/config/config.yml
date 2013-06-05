@@ -74,7 +74,7 @@ swiftmailer:
 
 bc_bootstrap:
     assets_dir:  %kernel.root_dir%/../vendor/twitter/bootstrap
-    jquery_path: %kernel.root_dir%/../vendor/jquery-1.10.1.min.js
+    jquery_path: "http://code.jquery.com/jquery-1.10.1.min.js"
 
 manne_w_hip_chat:
     auth_token: %hipchat%
