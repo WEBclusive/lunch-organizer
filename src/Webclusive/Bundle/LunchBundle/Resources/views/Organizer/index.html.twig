@@ -20,7 +20,6 @@
     <script>
 
         $('.state-toggle').hover(function (e) {
-            currentTd = $(this);
             var otherBtns = $('.state-toggle-btn');
             var btn = $("#btnTemplate").html();
 
@@ -36,6 +35,7 @@
 
             // Add triggers
             $('.toggle-action').click(function (e) {
+                var currentTd = $(this).parents('td').last();
 
                 var postData = {
                     date: $(this).data('date'),
