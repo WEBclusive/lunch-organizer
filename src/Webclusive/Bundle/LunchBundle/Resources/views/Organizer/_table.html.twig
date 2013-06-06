@@ -3,8 +3,15 @@
     <tr>
         <th>User</th>
         <th>Total</th>
+        {% set today = "now"|date('Ymd') %}
         {% for date in renderDates  %}
-            <th class="date {{ (date.format('N') > 5)? 'weekend':'weekday' }}">{{ date.format('D') }}<br>{{ date.format('d/m') }}</th>
+            <th class="date
+                    {{ (date.format('N') > 5)? 'weekend':'weekday' }}
+
+                    {{ (date.format('Ymd') == today)? 'today':'' }}
+                    ">
+                {{ date.format('D') }}<br>{{ date.format('d/m') }}
+            </th>
         {% endfor %}
     </tr>
     </thead>

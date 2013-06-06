@@ -18,6 +18,10 @@ th.weekday {
   text-align: center;
   font-size: 75%;
 }
+.today {
+  border: 1px dashed #df8505;
+  background-color: #faf2cc;
+}
 .table td {
   height: 25px;
 }
