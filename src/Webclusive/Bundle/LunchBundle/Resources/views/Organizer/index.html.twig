@@ -6,13 +6,7 @@
 
     {% include 'WebclusiveLunchBundle:Organizer:_table.html.twig' with {renderDates: renderDates|slice(0, 21)} %}
     {% include 'WebclusiveLunchBundle:Organizer:_table.html.twig' with {renderDates: renderDates|slice(21, 21)} %}
-
-    <h2>To Do:</h2>
-    <ul>
-        <li>Count totals per user</li>
-        <li>Exclude weekends from list</li>
-        <li>Add a lunch rating system?</li>
-    </ul>
+    
 {% endblock %}
 
 {% block javascripts %}
@@ -20,7 +14,6 @@
     <script>
 
         $('.state-toggle').hover(function (e) {
-            currentTd = $(this);
             var otherBtns = $('.state-toggle-btn');
             var btn = $("#btnTemplate").html();
 
@@ -36,6 +29,7 @@
 
             // Add triggers
             $('.toggle-action').click(function (e) {
+                var currentTd = $(this).parents('td').last();
 
                 var postData = {
                     date: $(this).data('date'),

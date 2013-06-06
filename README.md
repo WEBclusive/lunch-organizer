@@ -37,3 +37,18 @@ the necessary dependencies. Download composer (see above) and run the
 following command:
 
     php composer.phar install
+    
+2 ) Developing
+
+### Compiling css
+
+To compile the LESS files into CSS you need to have less installed and run a console command.
+
+Install LESS (>= v1.3.3)
+    
+    npm install -g less
+    
+Compile CSS (will keep listening for file changes)
+
+    app/console assetic:dump --watch
+    

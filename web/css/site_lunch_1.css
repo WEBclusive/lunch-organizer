@@ -22,3 +22,6 @@ th.weekday {
   border: 1px dashed #df8505;
   background-color: #faf2cc;
 }
+.table td {
+  height: 25px;
+}
